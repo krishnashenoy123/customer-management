@@ -1,3 +1,4 @@
+
 {%  extends 'accounts/base.html' %}
 {% load static %}
 {% block content %}
@@ -10,11 +11,11 @@
 			<form action="" method="POST">
 				{% csrf_token %}
 				{{ form.management_form }}
-				{% for form in formset %}
+				{% for form in form %}
 					{{form}}
 					<hr>
 				{% endfor %}
-				
+
 				<input type="submit" name="Submit">
 			</form>
 

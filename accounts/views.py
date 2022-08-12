@@ -44,18 +44,20 @@ def create_order(request, pk):
         #form = OrderForm(request.POST)
         formset = OrderFormSet(request.POST, instance=customer)
         if formset.is_valid():
-            form.save()
+            formset.save()
             return redirect('/')
 
-    context = {'formset':formset}
+    context = {'form':formset}
     return render(request, 'accounts/order_form.html', context)
 
 def update_order(request, pk):
     order = Order.objects.get(id=pk)
-    form = OrderForm(instance=order)
+    form = OrderForm(instance = order)
+
     if request.method == 'POST':
         #print('Printing POST', request.POST)
         form = OrderForm(request.POST, instance=order)
+        #formset = OrderFormSet(request.POST, instance=customer)
         if form.is_valid():
             form.save()
             return redirect('/')
